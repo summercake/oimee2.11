@@ -16,9 +16,9 @@ class CreateCategoriesTable extends Migration
          * */
         Schema ::create('categories', function (Blueprint $table){
             $table -> increments('category_id');
-            $table -> integer('parent_id') -> unsigned() -> nullable() ->default(null);
-            $table -> string('name') -> unique();
-            $table -> string('slug') -> unique();
+            $table -> integer('parent_id') -> unsigned() -> nullable();
+            $table -> string('category_name') -> unique();
+            $table -> string('category_slug') -> nullable();
             // active_flag is used for identifying status of delete or not
             $table -> tinyInteger('active_flag') ->default(1);
             $table -> timestamps();

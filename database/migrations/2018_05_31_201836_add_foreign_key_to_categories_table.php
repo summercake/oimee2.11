@@ -14,7 +14,7 @@ class AddForeignKeyToCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table -> foreign('parent_id') -> references('category_id') -> on('categories') -> onUpdate('cascade') -> onDelete('set null');
+            $table -> foreign('parent_id') -> references('category_id') -> on('categories');
         });
     }
 
@@ -27,7 +27,6 @@ class AddForeignKeyToCategoriesTable extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table -> dropForeign('categories_parent_id_foreign');
-
         });
     }
 }

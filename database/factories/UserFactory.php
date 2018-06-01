@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -14,10 +14,18 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
+    static $password;
+    $now = Carbon::now()->toDateTimeString();
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'user_name' => $faker->userName,
+        'user_password' => $password ?: $password = bcrypt('1234'),
+        //'user_firstname' => $faker->firstName,
+        //'user_lastname' => $faker->lastName,
+        'user_email' => $faker->unique()->safeEmail,
+        'user_phone' => $faker->phoneNumber,
+        'user_wechat_id' => str_random(6),
         'remember_token' => str_random(10),
+        'created_at' => $now,
+        'updated_at' => $now,
     ];
 });

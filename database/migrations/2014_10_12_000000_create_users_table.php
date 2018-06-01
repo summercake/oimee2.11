@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table -> string('user_password');
             // active_flag is used for identifying avatar of user
             $table -> string('user_avatar');
-            $table -> string('user_firstname') -> nullable();
-            $table -> string('user_lastname') -> nullable();
+            //$table -> string('user_firstname') -> nullable();
+            //$table -> string('user_lastname') -> nullable();
             $table -> tinyInteger('user_gender') -> nullable();
             $table -> string('user_email') -> unique();
             $table -> string('user_phone') -> nullable();
