@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContactPeopleTable extends Migration
+class AddForeignKeyToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateContactPeopleTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_people', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table -> foreign('role_id') -> references('role_id') -> on('roles');
         });
     }
 
@@ -26,6 +25,8 @@ class CreateContactPeopleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contact_people');
+        Schema ::table('users', function ($table){
+            $table -> dropForeign('users_role_id_foreign');
+        });
     }
 }

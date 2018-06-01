@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateRepliesTable extends Migration
 {
     /**
@@ -13,9 +11,16 @@ class CreateRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('replies', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema ::create('replies', function (Blueprint $table){
+            $table -> increments('reply_id');
+            $table -> integer('post_id')-> unsigned();
+            $table -> integer('user_id')-> unsigned();
+            $table -> string('reply_content');
+            $table -> integer('reply_view_count')->default(0);
+            $table -> integer('reply_like_count')->default(0);
+            // active_flag is used for identifying status of delete or not
+            $table -> tinyInteger('active_flag')->default(1);
+            $table -> timestamps();
         });
     }
 
@@ -26,6 +31,6 @@ class CreateRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('replies');
+        Schema ::dropIfExists('replies');
     }
 }
